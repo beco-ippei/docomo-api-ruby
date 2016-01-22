@@ -4,11 +4,10 @@ require 'openssl'
 require 'net/http'
 
 module DocomoAPI
-  API_URL = "https://api.apigw.smt.docomo.ne.jp/dialogue/v1/dialogue"
-
   class Dialogue
+    API_URL = "#{DocomoAPI::ROOT_URL}/dialogue/v1/dialogue"
     def initialize(key)
-      @uri = URI.parse("#{DocomoAPI::API_URL}?APIKEY=#{APIKEY}")
+      @uri = URI.parse("#{API_URL}?APIKEY=#{key}")
       @http = Net::HTTP.new(@uri.host, @uri.port)
       @http.use_ssl = true
     end
