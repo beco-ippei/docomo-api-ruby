@@ -1,6 +1,7 @@
 # DocomoApi
 
 [![Build Status](https://travis-ci.org/beco-ippei/docomo-api-ruby.svg?branch=master)](https://travis-ci.org/beco-ippei/docomo-api-ruby)
+[![Coverage Status](https://coveralls.io/repos/github/beco-ippei/docomo-api-ruby/badge.svg?branch=master)](https://coveralls.io/github/beco-ippei/docomo-api-ruby?branch=master)
 
 Simple api wrapper for Docomo-API.
 (Dialogue service only)
