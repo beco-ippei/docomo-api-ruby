@@ -1,5 +1,7 @@
 # DocomoApi
 
+[![Build Status](https://travis-ci.org/beco-ippei/docomo-api-ruby.svg?branch=master)](https://travis-ci.org/beco-ippei/docomo-api-ruby)
+
 Simple api wrapper for Docomo-API.
 (Dialogue service only)
 
