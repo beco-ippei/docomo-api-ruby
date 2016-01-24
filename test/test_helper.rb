@@ -1,5 +1,6 @@
 if ENV['CI']
   require 'coveralls'
+  require 'codeclimate-test-reporter'
   Coveralls.wear!
 
   SimpleCov.formatters = [
