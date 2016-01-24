@@ -41,7 +41,31 @@ class DocomoAPI::DialogueTest < Minitest::Test
   end
 
   def test_talk
-    #TODO
+    req = {
+      body: /"utt":"[^"]*雪が降りそう/,
+      headers: {"Content-Type" => /\/json$/},
+    }
+    exp_msg = '足元に気をつけてくださいね'
+    exp_ctx = 'text-exp-ctx'
+    return_body = {
+      utt: exp_msg,
+      context: exp_ctx,
+    }.to_json
+
+    # stubbing
+    stub_request(:post, "#{@api}?APIKEY=#{@token}").
+      with(req).
+      to_return(:body => return_body)
+
+    msg = '明日は雪が降りそうですね :snowman:'
+
+    # get response message
+    ret = @dialogue.talk msg
+    assert_equal exp_msg, ret
+
+    # get response context
+    res_ctx = @dialogue.instance_variable_get :@context
+    assert_equal exp_ctx, res_ctx
   end
 
   def test_it_makes_request_body
