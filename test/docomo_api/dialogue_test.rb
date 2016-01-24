@@ -12,11 +12,13 @@ class DocomoAPI::DialogueTest < Minitest::Test
     assert_equal @api, ::DocomoAPI::Dialogue::API_URL
   end
 
-  def test_its_instance_has_attrs_for_request
+  def test_its_instance_has_uri
     uri = URI.parse "#{@api}?APIKEY=#{@token}"
     actual = @dialogue.instance_variable_get :@uri
     assert_equal uri, actual
+  end
 
+  def test_its_instance_has_attrs_for_request
     exp = {
       host: @host,
       port: 443,
@@ -48,8 +50,10 @@ class DocomoAPI::DialogueTest < Minitest::Test
     req = @dialogue.send :request, msg
     exp_body = {utt: msg}.to_json
     assert_equal exp_body, req.body
+  end
 
-    # set context
+  def test_it_makes_request_body_with_context
+    msg = "test-message"
     ctx = 'text-ctx'
     @dialogue.instance_variable_set :@context, ctx
 
