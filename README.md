@@ -35,9 +35,23 @@ irb(main):001:0> require 'docomo-api'
 => true
 irb(main):001:0> d = DocomoAPI::Dialogue.new "XXXXXXXXXXXXXXXX"
 => #<DocomoAPI::Dialogue:0xAAAAAAAAAAAA @uri=#<URI::HTTPS https://api.apigw.smt.docomo.ne.jp/dialogue/v1/dialogue?APIKEY=XXXXXXXXXXXXXXXXXXXXXXx>, @http=#<Net::HTTP api.apigw.smt.docomo.ne.jp:443 open=false>>
-irb(main):003:0> d.talk '大寒波来てる'
+irb(main):002:0> d.talk '大寒波来てる'
 => "大寒波はくるんですね？テレビは見やすいですね"
 ```
+
+### use Dialogue console
+test for api
+```
+$ DOCOMO_API_KEY=XXXXXXXXXXXXXXXXXXX bundle exec bin/dialogue
+start dialogue    (if you need help type 'help' and enter)
+bot: 2016年になりましたね。
+you: 申年やね
+bot: つら
+you: ぽよ
+bot: ぽよ
+you: exit
+```
+
 
 ## Development
 
