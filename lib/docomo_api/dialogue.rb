@@ -19,12 +19,16 @@ module DocomoAPI
     end
 
     # call api
-    #TODO: better method name...
     def talk(msg)
       response = @http.start do |h|
         res = h.request(request(msg))
         JSON.parse(res.body)
       end
+
+      if err = response['requestError']
+        raise err.inspect
+      end
+
       @context = response['context']
       response['utt']
     end

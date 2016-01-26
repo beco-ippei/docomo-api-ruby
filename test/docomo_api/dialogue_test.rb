@@ -68,6 +68,30 @@ class DocomoAPI::DialogueTest < Minitest::Test
     assert_equal exp_ctx, res_ctx
   end
 
+  def test_talk_with_error
+    req = {
+      body: /"utt":"[^"]*エラーが欲しい/,
+      headers: {"Content-Type" => /\/json$/},
+    }
+    return_body = {
+      'requestError' => {
+        'someException' => {'msg' => 'failed anything'}
+      }
+    }.to_json
+
+    # stubbing
+    stub_request(:post, "#{@api}?APIKEY=#{@token}").
+      with(req).
+      to_return(:body => return_body)
+
+    msg = '別にエラーが欲しいわけじゃないんだからね'
+
+    # raise exception
+    assert_raises StandardError do
+      @dialogue.talk msg
+    end
+  end
+
   def test_it_makes_request_body
     msg = "test-message"
 
