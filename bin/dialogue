@@ -1,17 +1,6 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
 require "docomo_api"
-
-# You can add fixtures and/or initialization code here to make experimenting
-# with your gem easier. You can also use a different console, if you like.
-
-# (If you use this, don't forget to add pry to your Gemfile!)
-# require "pry"
-# Pry.start
-#
-#require "irb"
-#IRB.start
 
 APIKEY = ENV['DOCOMO_API_KEY']
 unless APIKEY
@@ -19,14 +8,12 @@ unless APIKEY
   exit 1
 end
 
-#require './lib/dialogue'
-
-dialog = DocomoAPI::Dialogue.new APIKEY
+dlg = DocomoAPI::Dialogue.new APIKEY
 msg = ''
 puts "start dialogue    (if you need help type 'help' and enter)"
 loop do
   if /^reset$/i =~ msg
-    dialog.reset
+    dlg.reset
   elsif /^help$/i =~ msg
     puts <<-HELP
       reset   ... reset dialogue context
@@ -34,7 +21,7 @@ loop do
       help   ... this messages
     HELP
   else
-    res = dialog.talk msg
+    res = dlg.talk msg
     puts "bot: #{res}"
   end
 
